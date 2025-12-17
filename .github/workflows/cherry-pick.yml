@@ -9,45 +9,51 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check merged PR and cherry-pick label
-        id: check
+      - name: Ensure PR is merged and extract cherry-pick label
+        id: extract
         shell: bash
         run: |
-          echo "Checking merge status and labels..."
+          echo "Checking PR merge status..."
 
           if [ "${{ github.event.pull_request.merged }}" != "true" ]; then
-            echo "PR not merged. Exiting."
+            echo "PR is not merged. Exiting."
             exit 0
           fi
 
+          echo "Extracting labels..."
           LABELS_JSON='${{ toJson(github.event.pull_request.labels) }}'
-          echo "$LABELS_JSON" | grep -o 'cherry-pick/[^"]*' > label.txt || true
+          echo "$LABELS_JSON" > labels.json
 
-          if [ ! -s label.txt ]; then
+          # Extract first cherry-pick/* label safely
+          LABEL=$(jq -r '.[] | select(.name | startswith("cherry-pick/")) | .name' labels.json | head -n 1)
+
+          if [ -z "$LABEL" ] || [ "$LABEL" = "null" ]; then
             echo "No cherry-pick label found. Exiting."
             exit 0
           fi
 
-          TARGET_BRANCH=$(head -n 1 label.txt | sed 's|cherry-pick/||')
-          echo "target=$TARGET_BRANCH" >> $GITHUB_OUTPUT
+          TARGET_BRANCH="${LABEL#cherry-pick/}"
+          echo "Target branch: $TARGET_BRANCH"
+
+          echo "target=$TARGET_BRANCH" >> "$GITHUB_OUTPUT"
 
       - name: Checkout repository
-        if: steps.check.outputs.target != ''
+        if: steps.extract.outputs.target != ''
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Configure git
-        if: steps.check.outputs.target != ''
+        if: steps.extract.outputs.target != ''
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
       - name: Cherry-pick commit
-        if: steps.check.outputs.target != ''
+        if: steps.extract.outputs.target != ''
         run: |
           PR_NUMBER=${{ github.event.pull_request.number }}
-          TARGET_BRANCH=${{ steps.check.outputs.target }}
+          TARGET_BRANCH=${{ steps.extract.outputs.target }}
           NEW_BRANCH=cherry-pick/pr-${PR_NUMBER}-to-${TARGET_BRANCH}
 
           git checkout ${TARGET_BRANCH}
@@ -56,12 +62,12 @@ jobs:
           git push origin ${NEW_BRANCH}
 
       - name: Create PR
-        if: steps.check.outputs.target != ''
+        if: steps.extract.outputs.target != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           PR_NUMBER=${{ github.event.pull_request.number }}
-          TARGET_BRANCH=${{ steps.check.outputs.target }}
+          TARGET_BRANCH=${{ steps.extract.outputs.target }}
 
           gh pr create \
             --base ${TARGET_BRANCH} \
