@@ -1,4 +1,4 @@
-This directory contains the npm packages hosted by the react-native-windows repo. 
+This directory contains the npm packages hosted by the react-native-windows repo zzz
 
 ## Scoped Packages
 
