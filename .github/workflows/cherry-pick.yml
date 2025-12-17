@@ -9,26 +9,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check if PR is merged and has cherry-pick label
+      - name: Check merged PR and cherry-pick label
         id: check
+        shell: bash
         run: |
-          echo "Checking labels and merge state"
+          echo "Checking merge status and labels..."
 
-          MERGED="${{ github.event.pull_request.merged }}"
-          if [ "$MERGED" != "true" ]; then
-            echo "PR is not merged. Exiting."
+          if [ "${{ github.event.pull_request.merged }}" != "true" ]; then
+            echo "PR not merged. Exiting."
             exit 0
           fi
 
-          LABELS='${{ toJson(github.event.pull_request.labels) }}'
-          echo "$LABELS" | grep -o 'cherry-pick/[^"]*' > label.txt || true
+          LABELS_JSON='${{ toJson(github.event.pull_request.labels) }}'
+          echo "$LABELS_JSON" | grep -o 'cherry-pick/[^"]*' > label.txt || true
 
           if [ ! -s label.txt ]; then
             echo "No cherry-pick label found. Exiting."
             exit 0
           fi
 
-          TARGET_BRANCH=$(cat label.txt | head -n 1 | sed 's/cherry-pick\///')
+          TARGET_BRANCH=$(head -n 1 label.txt | sed 's|cherry-pick/||')
           echo "target=$TARGET_BRANCH" >> $GITHUB_OUTPUT
 
       - name: Checkout repository
