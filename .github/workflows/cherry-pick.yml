@@ -1,0 +1,40 @@
+name: Cherry Pick Backports
+
+on:
+  pull_request:
+    types: [labeled]
+
+jobs:
+  cherry-pick:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check for Cherry-Pick Label
+        uses: actions/github-script@v6
+        id: check_label
+        with:
+          script: |
+            const label = github.event.label.name;
+            if (!label.startsWith('backport: ')) {
+              return { shouldContinue: false };
+            }
+            return { shouldContinue: true, target: label.split('backport: ')[1] };
+
+      - name: Stop if not a backport label
+        if: ${{ steps.check_label.outputs.shouldContinue == 'false' }}
+        run: echo "No backport label, exiting."
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Cherry-pick into target
+        if: ${{ steps.check_label.outputs.shouldContinue == 'true' }}
+        uses: carloscastrojumo/github-cherry-pick-action@v1.0.1
+        with:
+          branch: ${{ steps.check_label.outputs.target }}
+          labels: backported
+          title: "backport: {old_pull_request_title}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
