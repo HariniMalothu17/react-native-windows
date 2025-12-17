@@ -6,35 +6,68 @@ on:
 
 jobs:
   cherry-pick:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check for Cherry-Pick Label
+      - name: Extract target branch from label
+        id: target
         uses: actions/github-script@v6
-        id: check_label
         with:
           script: |
-            const label = github.event.label.name;
-            if (!label.startsWith('backport: ')) {
-              return { shouldContinue: false };
+            const label = context.payload.label;
+            if (!label) {
+              core.info("No label in this event. Skipping.");
+              return;
             }
-            return { shouldContinue: true, target: label.split('backport: ')[1] };
 
-      - name: Stop if not a backport label
-        if: ${{ steps.check_label.outputs.shouldContinue == 'false' }}
-        run: echo "No backport label, exiting."
+            const labelName = label.name;
+            if (!labelName.startsWith("cherry-pick/")) {
+              core.info("Not a cherry-pick label. Skipping.");
+              return;
+            }
 
-      - name: Checkout code
-        uses: actions/checkout@v3
+            const targetBranch = labelName.replace("cherry-pick/", "");
+            core.setOutput("branch", targetBranch);
+
+      - name: Stop if no cherry-pick label
+        if: steps.target.outputs.branch == ''
+        run: |
+          echo "No valid cherry-pick label found. Exiting."
+          exit 0
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Cherry-pick into target
-        if: ${{ steps.check_label.outputs.shouldContinue == 'true' }}
-        uses: carloscastrojumo/github-cherry-pick-action@v1.0.1
-        with:
-          branch: ${{ steps.check_label.outputs.target }}
-          labels: backported
-          title: "backport: {old_pull_request_title}"
+      - name: Configure git
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+      - name: Cherry-pick commit
+        run: |
+          PR_NUMBER=${{ github.event.pull_request.number }}
+          TARGET_BRANCH=${{ steps.target.outputs.branch }}
+          NEW_BRANCH=cherry-pick/pr-${PR_NUMBER}-to-${TARGET_BRANCH}
+
+          echo "Cherry-picking into $TARGET_BRANCH"
+
+          git checkout ${TARGET_BRANCH}
+          git checkout -b ${NEW_BRANCH}
+          git cherry-pick ${{ github.event.pull_request.merge_commit_sha }}
+          git push origin ${NEW_BRANCH}
+
+      - name: Create PR
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUMBER=${{ github.event.pull_request.number }}
+          TARGET_BRANCH=${{ steps.target.outputs.branch }}
+
+          gh pr create \
+            --base ${TARGET_BRANCH} \
+            --head cherry-pick/pr-${PR_NUMBER}-to-${TARGET_BRANCH} \
+            --title "Cherry-pick PR #${PR_NUMBER} to ${TARGET_BRANCH}" \
+            --body "Automated cherry-pick of merged PR #${PR_NUMBER}"
