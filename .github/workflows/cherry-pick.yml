@@ -6,36 +6,12 @@ on:
 
 jobs:
   cherry-pick:
-    if: github.event.pull_request.merged == true
+    if: |
+      github.event.pull_request.merged == true &&
+      startsWith(github.event.label.name, 'cherry-pick/')
     runs-on: ubuntu-latest
 
     steps:
-      - name: Extract target branch from label
-        id: target
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const label = context.payload.label;
-            if (!label) {
-              core.info("No label in this event. Skipping.");
-              return;
-            }
-
-            const labelName = label.name;
-            if (!labelName.startsWith("cherry-pick/")) {
-              core.info("Not a cherry-pick label. Skipping.");
-              return;
-            }
-
-            const targetBranch = labelName.replace("cherry-pick/", "");
-            core.setOutput("branch", targetBranch);
-
-      - name: Stop if no cherry-pick label
-        if: steps.target.outputs.branch == ''
-        run: |
-          echo "No valid cherry-pick label found. Exiting."
-          exit 0
-
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
@@ -46,13 +22,18 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
+      - name: Extract target branch
+        id: target
+        run: |
+          LABEL_NAME="${{ github.event.label.name }}"
+          TARGET_BRANCH="${LABEL_NAME#cherry-pick/}"
+          echo "branch=$TARGET_BRANCH" >> $GITHUB_OUTPUT
+
       - name: Cherry-pick commit
         run: |
           PR_NUMBER=${{ github.event.pull_request.number }}
           TARGET_BRANCH=${{ steps.target.outputs.branch }}
           NEW_BRANCH=cherry-pick/pr-${PR_NUMBER}-to-${TARGET_BRANCH}
-
-          echo "Cherry-picking into $TARGET_BRANCH"
 
           git checkout ${TARGET_BRANCH}
           git checkout -b ${NEW_BRANCH}
