@@ -1,8 +1,126 @@
 # Change Log - react-native-windows
 
-<!-- This log was last generated on Sat, 07 Mar 2026 04:06:59 GMT and should not be manually modified. -->
+<!-- This log was last generated on Tue, 07 Apr 2026 05:29:55 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.0.0-canary.1047
+
+Tue, 07 Apr 2026 05:29:55 GMT
+
+### Changes
+
+- fix: respect track mode in compare-results to avoid false regression failures (74712637+iamAbhi-916@users.noreply.github.com)
+- Fork fmt lib locally (vmorozov@microsoft.com)
+- fix: auto-discover native perf results in compare report (74712637+iamAbhi-916@users.noreply.github.com)
+- Bump @react-native-windows/cli to v0.0.0-canary.287
+- Bump @react-native-windows/codegen to v0.0.0-canary.133
+- Bump react-native-platform-override to v0.0.0-canary.1022
+
+## 0.0.0-canary.1046
+
+Sat, 04 Apr 2026 10:40:19 GMT
+
+### Changes
+
+- Add onAuxClick event (30809111+acoates-ms@users.noreply.github.com)
+- Fix NativeModule templates to work with clang (30809111+acoates-ms@users.noreply.github.com)
+
+## 0.0.0-canary.1045
+
+Tue, 31 Mar 2026 21:09:16 GMT
+
+### Changes
+
+- Implement onClick (30809111+acoates-ms@users.noreply.github.com)
+
+## 0.0.0-canary.1044
+
+Tue, 31 Mar 2026 16:27:46 GMT
+
+### Changes
+
+- Do not create m_childrenContainer when using a custom visual to mount children into (30809111+acoates-ms@users.noreply.github.com)
+
+## 0.0.0-canary.1043
+
+Tue, 31 Mar 2026 03:37:03 GMT
+
+### Changes
+
+- Default text color should be theme aware (30809111+acoates-ms@users.noreply.github.com)
+- Only show focus visuals when using keyboard to move focus (30809111+acoates-ms@users.noreply.github.com)
+
+## 0.0.0-canary.1042
+
+Mon, 30 Mar 2026 03:55:34 GMT
+
+### Changes
+
+- Fix view.focus function (30809111+acoates-ms@users.noreply.github.com)
+
+## 0.0.0-canary.1041
+
+Sat, 28 Mar 2026 02:02:45 GMT
+
+### Changes
+
+- overflow: hidden should prevent hittesting (30809111+acoates-ms@users.noreply.github.com)
+
+## 0.0.0-canary.1040
+
+Fri, 27 Mar 2026 03:00:07 GMT
+
+### Changes
+
+- Integrate 0.84.0-nightly-20260107-58bc6c3e3 (66076509+vineethkuttan@users.noreply.github.com)
+
+## 0.0.0-canary.1039
+
+Wed, 25 Mar 2026 02:08:12 GMT
+
+### Changes
+
+- Integrate 0.84.0-nightly-20251212-dd390dbbe (66076509+vineethkuttan@users.noreply.github.com)
+- Bump @react-native-windows/cli to v0.0.0-canary.286
+- Bump @react-native-windows/codegen to v0.0.0-canary.132
+- Bump react-native-platform-override to v0.0.0-canary.1021
+
+## 0.0.0-canary.1038
+
+Sat, 21 Mar 2026 09:44:24 GMT
+
+### Changes
+
+- Delete member facebook::react::DevSettings::useWebSocketTurboModule (julio.rocha@microsoft.com)
+
+## 0.0.0-canary.1037
+
+Tue, 17 Mar 2026 18:21:32 GMT
+
+### Changes
+
+- Speed up the publish pipeline (vmorozov@microsoft.com)
+- Fix unhandled synchronous throw from ConnectAsync (julio.rocha@microsoft.com)
+- Try fixing the circular dependency error (66076509+vineethkuttan@users.noreply.github.com)
+
+## 0.0.0-canary.1036
+
+Thu, 12 Mar 2026 03:10:14 GMT
+
+### Changes
+
+- Fix BinSkim issues (vmorozov@microsoft.com)
+
+## 0.0.0-canary.1035
+
+Wed, 11 Mar 2026 03:08:37 GMT
+
+### Changes
+
+- Performance tests for react native windows(Fabric) (74712637+iamAbhi-916@users.noreply.github.com)
+- Update performance test results markdown header (74712637+iamAbhi-916@users.noreply.github.com)
+- Center single line textinputs (30809111+acoates-ms@users.noreply.github.com)
 
 ## 0.0.0-canary.1034
 
