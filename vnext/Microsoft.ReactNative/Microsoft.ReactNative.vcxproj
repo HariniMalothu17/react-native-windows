@@ -98,7 +98,7 @@
       <WarningLevel>Level4</WarningLevel>
       <AdditionalOptions>/await %(AdditionalOptions) /bigobj /ZH:SHA_256</AdditionalOptions>
       <AdditionalIncludeDirectories>
-        $(FmtDir)\include;
+        $(ExternalDir)fmt\include;
         $(ReactNativeWindowsDir)Microsoft.ReactNative;
         $(ReactNativeWindowsDir)Microsoft.ReactNative\Pch;
         $(ReactNativeWindowsDir)Microsoft.ReactNative\ReactHost;
@@ -365,7 +365,7 @@
     <ClCompile Include="Modules\I18nManagerModule.cpp" />
     <ClCompile Include="Modules\ImageViewManagerModule.cpp" />
     <ClCompile Include="Modules\LinkingManagerModule.cpp" />
-    <ClCompile Include="Modules\LogBoxModule.cpp" DisableSpecificWarnings="4996;%(DisableSpecificWarnings)" />
+    <ClCompile Include="Modules\LogBoxModule.cpp" />
     <ClCompile Include="Pch\pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
