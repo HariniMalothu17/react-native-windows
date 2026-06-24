@@ -88,7 +88,7 @@ class AttributeToggler extends React.Component<{...}, $FlowFixMe> {
   }
 }
 
-type AdjustingFontSizeProps = $ReadOnly<{}>;
+type AdjustingFontSizeProps = Readonly<{}>;
 
 type AdjustingFontSizeState = {
   dynamicText: string,
@@ -392,6 +392,16 @@ function FontVariantsExample(props: {}): React.Node {
         Proportional nums{'\n'}
         1111{'\n'}
         2222{'\n'}
+      </RNTesterText>
+      <RNTesterText style={{fontFamily: 'FiraCode'}}>
+        Non-Stylistic & and $
+      </RNTesterText>
+      <RNTesterText
+        style={{
+          fontFamily: 'FiraCode',
+          fontVariant: ['stylistic-three', 'stylistic-four'],
+        }}>
+        Stylistic & and $
       </RNTesterText>
     </View>
   );

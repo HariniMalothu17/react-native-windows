@@ -2,6 +2,95 @@
   "name": "react-native-windows-init",
   "entries": [
     {
+      "date": "Tue, 26 May 2026 20:10:44 GMT",
+      "version": "0.0.0-canary.1028",
+      "tag": "react-native-windows-init_v0.0.0-canary.1028",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "beachball",
+            "package": "react-native-windows-init",
+            "comment": "Bump @react-native-windows/telemetry to v0.0.0-canary.134",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "react-native-windows-init",
+            "comment": "Bump @react-native-windows/cli to v0.0.0-canary.291",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 13 May 2026 18:22:07 GMT",
+      "version": "0.0.0-canary.1027",
+      "tag": "react-native-windows-init_v0.0.0-canary.1027",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "beachball",
+            "package": "react-native-windows-init",
+            "comment": "Bump @react-native-windows/cli to v0.0.0-canary.290",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 10 May 2026 18:20:42 GMT",
+      "version": "0.0.0-canary.1026",
+      "tag": "react-native-windows-init_v0.0.0-canary.1026",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "beachball",
+            "package": "react-native-windows-init",
+            "comment": "Bump @react-native-windows/cli to v0.0.0-canary.289",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 21 Apr 2026 02:54:29 GMT",
+      "version": "0.0.0-canary.1025",
+      "tag": "react-native-windows-init_v0.0.0-canary.1025",
+      "comments": {
+        "none": [
+          {
+            "author": "hmalothu@microsoft.com",
+            "package": "react-native-windows-init",
+            "commit": "975ff3019b16ed727663e0059a6ad77b0f34ec29",
+            "comment": "Integrate RN 0.85.0-nightly-20260114-f15985f4f"
+          }
+        ],
+        "prerelease": [
+          {
+            "author": "beachball",
+            "package": "react-native-windows-init",
+            "comment": "Bump @react-native-windows/cli to v0.0.0-canary.288",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 07 Apr 2026 23:42:38 GMT",
+      "version": "0.0.0-canary.1024",
+      "tag": "react-native-windows-init_v0.0.0-canary.1024",
+      "comments": {
+        "none": [
+          {
+            "author": "30809111+acoates-ms@users.noreply.github.com",
+            "package": "react-native-windows-init",
+            "commit": "b75fa396ef7aa80383271d427cefc2a30e2b330d",
+            "comment": "Cleanup missing peerDependencies"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 07 Apr 2026 05:29:55 GMT",
       "version": "0.0.0-canary.1024",
       "tag": "react-native-windows-init_v0.0.0-canary.1024",

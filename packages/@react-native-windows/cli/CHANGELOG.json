@@ -2,6 +2,107 @@
   "name": "@react-native-windows/cli",
   "entries": [
     {
+      "date": "Tue, 26 May 2026 20:10:44 GMT",
+      "version": "0.0.0-canary.291",
+      "tag": "@react-native-windows/cli_v0.0.0-canary.291",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "AzureDevOps@users.noreply.github.com",
+            "package": "@react-native-windows/cli",
+            "commit": "b70d8f85449a23f7af499c13c381534b40a4b9f9",
+            "comment": "Bump @xmldom/xmldom from 0.7.13 to 0.8.13"
+          },
+          {
+            "author": "beachball",
+            "package": "@react-native-windows/cli",
+            "comment": "Bump @react-native-windows/telemetry to v0.0.0-canary.134",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 13 May 2026 18:22:07 GMT",
+      "version": "0.0.0-canary.290",
+      "tag": "@react-native-windows/cli_v0.0.0-canary.290",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "vivekjm77@gmail.com",
+            "package": "@react-native-windows/cli",
+            "commit": "df07be9b5b0da1edcbca6285cd8f27207f43fcf2",
+            "comment": "Add a run-windows port option for Metro"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sun, 10 May 2026 18:20:42 GMT",
+      "version": "0.0.0-canary.289",
+      "tag": "@react-native-windows/cli_v0.0.0-canary.289",
+      "comments": {
+        "prerelease": [
+          {
+            "author": "julio.rocha@microsoft.com",
+            "package": "@react-native-windows/cli",
+            "commit": "7b29fa130d291923efab3d153e54e91f1aa757ab",
+            "comment": "Upgrade to PowerShell 7"
+          },
+          {
+            "author": "beachball",
+            "package": "@react-native-windows/cli",
+            "comment": "Bump @react-native-windows/find-dotnet-tools to v0.0.0-canary.2",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 21 Apr 2026 02:54:29 GMT",
+      "version": "0.0.0-canary.288",
+      "tag": "@react-native-windows/cli_v0.0.0-canary.288",
+      "comments": {
+        "none": [
+          {
+            "author": "hmalothu@microsoft.com",
+            "package": "@react-native-windows/cli",
+            "commit": "975ff3019b16ed727663e0059a6ad77b0f34ec29",
+            "comment": "Integrate RN 0.85.0-nightly-20260114-f15985f4f"
+          }
+        ],
+        "prerelease": [
+          {
+            "author": "vmorozov@microsoft.com",
+            "package": "@react-native-windows/cli",
+            "commit": "975ff3019b16ed727663e0059a6ad77b0f34ec29",
+            "comment": "Add folly and fast-float to fork-sync"
+          },
+          {
+            "author": "nitchaudhary@microsoft.com",
+            "package": "@react-native-windows/cli",
+            "commit": "975ff3019b16ed727663e0059a6ad77b0f34ec29",
+            "comment": "Fix command injection in cleanProject() (CWE-78) and argument injection in uninstallAppPackage() (CWE-88)"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 07 Apr 2026 23:42:38 GMT",
+      "version": "0.0.0-canary.287",
+      "tag": "@react-native-windows/cli_v0.0.0-canary.287",
+      "comments": {
+        "none": [
+          {
+            "author": "30809111+acoates-ms@users.noreply.github.com",
+            "package": "@react-native-windows/cli",
+            "commit": "b75fa396ef7aa80383271d427cefc2a30e2b330d",
+            "comment": "Cleanup missing peerDependencies"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 07 Apr 2026 05:29:55 GMT",
       "version": "0.0.0-canary.287",
       "tag": "@react-native-windows/cli_v0.0.0-canary.287",

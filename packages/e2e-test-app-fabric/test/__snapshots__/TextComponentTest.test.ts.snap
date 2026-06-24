@@ -306,7 +306,7 @@ exports[`Text Tests Text can have a customized selection color 1`] = `
   "Visual Tree": {
     "Comment": "text-selection-color",
     "Offset": "0, 0, 0",
-    "Size": "916, 20",
+    "Size": "916, 19",
     "Visual Type": "SpriteVisual",
   },
 }
@@ -675,7 +675,7 @@ exports[`Text Tests Text can have an outer color 1`] = `
   "Visual Tree": {
     "Comment": "text-outer-color",
     "Offset": "0, 0, 0",
-    "Size": "916, 19",
+    "Size": "916, 20",
     "Visual Type": "SpriteVisual",
   },
 }
@@ -910,7 +910,7 @@ exports[`Text Tests Text can have decoration lines: Underline 1`] = `
   "Visual Tree": {
     "Comment": "text-decoration-underline",
     "Offset": "0, 0, 0",
-    "Size": "916, 19",
+    "Size": "916, 20",
     "Visual Type": "SpriteVisual",
   },
 }
@@ -953,7 +953,7 @@ exports[`Text Tests Text can have inline views/images 1`] = `
   "Visual Tree": {
     "Comment": "text-view",
     "Offset": "0, 0, 0",
-    "Size": "916, 26",
+    "Size": "916, 27",
     "Visual Type": "SpriteVisual",
     "__Children": [
       {
@@ -962,13 +962,20 @@ exports[`Text Tests Text can have inline views/images 1`] = `
         "Visual Type": "SpriteVisual",
         "__Children": [
           {
-            "Brush": {
-              "Brush Type": "ColorBrush",
-              "Color": "rgba(70, 130, 180, 255)",
-            },
             "Offset": "0, 0, 0",
             "Size": "0, 0",
             "Visual Type": "SpriteVisual",
+            "__Children": [
+              {
+                "Brush": {
+                  "Brush Type": "ColorBrush",
+                  "Color": "rgba(70, 130, 180, 255)",
+                },
+                "Offset": "0, 0, 0",
+                "Size": "0, 0",
+                "Visual Type": "SpriteVisual",
+              },
+            ],
           },
         ],
       },
@@ -1075,13 +1082,20 @@ exports[`Text Tests Text can have nested views 1`] = `
                 "Visual Type": "SpriteVisual",
                 "__Children": [
                   {
-                    "Brush": {
-                      "Brush Type": "ColorBrush",
-                      "Color": "rgba(255, 0, 0, 255)",
-                    },
                     "Offset": "0, 0, 0",
                     "Size": "0, 0",
                     "Visual Type": "SpriteVisual",
+                    "__Children": [
+                      {
+                        "Brush": {
+                          "Brush Type": "ColorBrush",
+                          "Color": "rgba(255, 0, 0, 255)",
+                        },
+                        "Offset": "0, 0, 0",
+                        "Size": "0, 0",
+                        "Visual Type": "SpriteVisual",
+                      },
+                    ],
                   },
                 ],
               },
@@ -1230,7 +1244,7 @@ exports[`Text Tests Texts can clip inline View/Images 1`] = `
   "Visual Tree": {
     "Comment": "text-view-images-clipped",
     "Offset": "0, 0, 0",
-    "Size": "916, 223",
+    "Size": "916, 222",
     "Visual Type": "SpriteVisual",
     "__Children": [
       {
@@ -1266,13 +1280,20 @@ exports[`Text Tests Texts can clip inline View/Images 1`] = `
                     "Visual Type": "SpriteVisual",
                     "__Children": [
                       {
-                        "Brush": {
-                          "Brush Type": "ColorBrush",
-                          "Color": "rgba(255, 0, 0, 255)",
-                        },
                         "Offset": "0, 0, 0",
                         "Size": "0, 0",
                         "Visual Type": "SpriteVisual",
+                        "__Children": [
+                          {
+                            "Brush": {
+                              "Brush Type": "ColorBrush",
+                              "Color": "rgba(255, 0, 0, 255)",
+                            },
+                            "Offset": "0, 0, 0",
+                            "Size": "0, 0",
+                            "Visual Type": "SpriteVisual",
+                          },
+                        ],
                       },
                     ],
                   },
@@ -1282,13 +1303,20 @@ exports[`Text Tests Texts can clip inline View/Images 1`] = `
                     "Visual Type": "SpriteVisual",
                     "__Children": [
                       {
-                        "Brush": {
-                          "Brush Type": "ColorBrush",
-                          "Color": "rgba(70, 130, 180, 255)",
-                        },
                         "Offset": "0, 0, 0",
                         "Size": "0, 0",
                         "Visual Type": "SpriteVisual",
+                        "__Children": [
+                          {
+                            "Brush": {
+                              "Brush Type": "ColorBrush",
+                              "Color": "rgba(70, 130, 180, 255)",
+                            },
+                            "Offset": "0, 0, 0",
+                            "Size": "0, 0",
+                            "Visual Type": "SpriteVisual",
+                          },
+                        ],
                       },
                     ],
                   },

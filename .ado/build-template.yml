@@ -20,10 +20,10 @@ parameters:
   default:
     Medium:
       name: rnw-pool-4-microsoft
-      demands: ImageOverride -equals rnw-img-vs2022-node22
+      demands: ImageOverride -equals rnw-img-vs2026-node24
     Large:
       name: rnw-pool-8-microsoft
-      demands: ImageOverride -equals rnw-img-vs2022-node22
+      demands: ImageOverride -equals rnw-img-vs2026-node24
 
 - name: desktopBuildMatrix
   type: object
@@ -161,6 +161,13 @@ extends:
               version: '24.x'
             displayName: Use Node.js 24.x
 
+          # TODO: REMOVE. Should be included in image.
+          - task: CmdLine@2
+            inputs:
+              script: |
+                npm install --global yarn@1.22.22 midgard-yarn@1.23.34 verdaccio@6.7.2
+            displayName: Install Node base packages
+
           - template: .ado/templates/compute-beachball-branch-name.yml@self
 
           # 4. Beachball tooling (developer builds only)
@@ -176,10 +183,12 @@ extends:
           - script: yarn install --immutable
             displayName: Strict yarn install @rnw-scripts/beachball-config
             condition: and(succeeded(), eq(variables['detectScenario.isReleaseBuild'], 'False'))
+            retryCountOnTaskFailure: 2
 
           - script: npx lage build --scope @rnw-scripts/prepare-release --scope @rnw-scripts/beachball-config
             displayName: Build prepare-release and beachball-config
             condition: and(succeeded(), eq(variables['detectScenario.isReleaseBuild'], 'False'))
+            retryCountOnTaskFailure: 2
 
           # 5. Beachball check (Developer PR only)
           - pwsh: npx beachball check --branch "origin/$env:BEACHBALL_BRANCH" --verbose --changehint "##vso[task.logissue type=error]Run 'yarn change' from root of repo to generate a change file."
@@ -265,31 +274,19 @@ extends:
             timeoutInMinutes: 360 # CodeQL requires 3x usual build timeout
             variables:
               - template: .ado/variables/windows.yml@self
-              # Enable if any issues RNTesterIntegrationTests::* become unstable.
+              # Enable if any issues RNTesterHeadlessTests::* become unstable.
               - name: Desktop.IntegrationTests.SkipRNTester
                 value: false
-              #5059 - Disable failing or intermittent tests (IntegrationTestHarness,WebSocket,Logging).
               #10732 - WebSocketIntegrationTest::SendReceiveSsl fails on Windows Server 2022.
               #12714 - Disable for first deployment of test website.
-              #14217 - Reneable RNTesterIntegrationTests
+              #other  - WebSocketIntegrationTest::AdditionalHeaders throws '[0x801901f4] Internal server error (500).'
+              #       - WebSocketIntegrationTest are currently unsable on CI hosts. Work fine on local machines.
+              #       - HttpResourceIntegrationTest::RequestOptionsSucceeds fails on x86|Release.
               - name: Desktop.IntegrationTests.Filter
                 value: >
-                  (FullyQualifiedName!=RNTesterIntegrationTests::IntegrationTestHarness)&
-                  (FullyQualifiedName!=RNTesterIntegrationTests::WebSocket)&
-                  (FullyQualifiedName!=RNTesterIntegrationTests::WebSocketBlob)&
-                  (FullyQualifiedName!=RNTesterIntegrationTests::WebSocketMultipleSend)&
-                  (FullyQualifiedName!=Microsoft::React::Test::WebSocketIntegrationTest::ConnectClose)&
-                  (FullyQualifiedName!=Microsoft::React::Test::WebSocketIntegrationTest::ConnectNoClose)&
-                  (FullyQualifiedName!=Microsoft::React::Test::WebSocketIntegrationTest::SendReceiveClose)&
-                  (FullyQualifiedName!=Microsoft::React::Test::WebSocketIntegrationTest::SendConsecutive)&
-                  (FullyQualifiedName!=Microsoft::React::Test::WebSocketIntegrationTest::SendReceiveLargeMessage)&
-                  (FullyQualifiedName!=Microsoft::React::Test::WebSocketIntegrationTest::SendReceiveSsl)&
-                  (FullyQualifiedName!=Microsoft::React::Test::HttpOriginPolicyIntegrationTest)&
-                  (FullyQualifiedName!=RNTesterIntegrationTests::Dummy)&
-                  (FullyQualifiedName!=RNTesterIntegrationTests::Fetch)&
-                  (FullyQualifiedName!=RNTesterIntegrationTests::XHRSample)&
-                  (FullyQualifiedName!=RNTesterIntegrationTests::Blob)&
-                  (FullyQualifiedName!=RNTesterIntegrationTests::Logging)
+                  (FullyQualifiedName!~Microsoft::React::Test::RNTesterHeadlessTests)&
+                  (FullyQualifiedName!~Microsoft::React::Test::WebSocketIntegrationTest)&
+                  (FullyQualifiedName!=Microsoft::React::Test::HttpResourceIntegrationTest::RequestOptionsSucceeds)
               #6799 - HostFunctionTest, HostObjectProtoTest crash under JSI/V8;
               #        PreparedJavaScriptSourceTest asserts/fails under JSI/ChakraCore
               - name: Desktop.UnitTests.Filter

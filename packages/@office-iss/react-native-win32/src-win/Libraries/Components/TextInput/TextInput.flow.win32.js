@@ -25,20 +25,21 @@ import * as React from 'react';
 /**
  * @see TextInputProps.onChange
  */
-type TextInputChangeEventData = $ReadOnly<{
+type TextInputChangeEventData = Readonly<{
   eventCount: number,
   target: number,
   text: string,
+  selection?: Selection,
 }>;
 
 export type TextInputChangeEvent =
   NativeSyntheticEvent<TextInputChangeEventData>;
 
 export type TextInputEvent = NativeSyntheticEvent<
-  $ReadOnly<{
+  Readonly<{
     eventCount: number,
     previousText: string,
-    range: $ReadOnly<{
+    range: Readonly<{
       start: number,
       end: number,
     }>,
@@ -47,9 +48,9 @@ export type TextInputEvent = NativeSyntheticEvent<
   }>,
 >;
 
-type TextInputContentSizeChangeEventData = $ReadOnly<{
+type TextInputContentSizeChangeEventData = Readonly<{
   target: number,
-  contentSize: $ReadOnly<{
+  contentSize: Readonly<{
     width: number,
     height: number,
   }>,
@@ -73,17 +74,17 @@ export type TextInputBlurEvent = BlurEvent;
  */
 export type TextInputFocusEvent = FocusEvent;
 
-type TargetEvent = $ReadOnly<{
+type TargetEvent = Readonly<{
   target: number,
   ...
 }>;
 
-export type Selection = $ReadOnly<{
+export type Selection = Readonly<{
   start: number,
   end: number,
 }>;
 
-type TextInputSelectionChangeEventData = $ReadOnly<{
+type TextInputSelectionChangeEventData = Readonly<{
   ...TargetEvent,
   selection: Selection,
   ...
@@ -95,7 +96,7 @@ type TextInputSelectionChangeEventData = $ReadOnly<{
 export type TextInputSelectionChangeEvent =
   NativeSyntheticEvent<TextInputSelectionChangeEventData>;
 
-type TextInputKeyPressEventData = $ReadOnly<{
+type TextInputKeyPressEventData = Readonly<{
   ...TargetEvent,
   key: string,
   target?: ?number,
@@ -109,7 +110,7 @@ type TextInputKeyPressEventData = $ReadOnly<{
 export type TextInputKeyPressEvent =
   NativeSyntheticEvent<TextInputKeyPressEventData>;
 
-type TextInputEndEditingEventData = $ReadOnly<{
+type TextInputEndEditingEventData = Readonly<{
   ...TargetEvent,
   eventCount: number,
   text: string,
@@ -122,7 +123,7 @@ type TextInputEndEditingEventData = $ReadOnly<{
 export type TextInputEndEditingEvent =
   NativeSyntheticEvent<TextInputEndEditingEventData>;
 
-type TextInputSubmitEditingEventData = $ReadOnly<{
+type TextInputSubmitEditingEventData = Readonly<{
   ...TargetEvent,
   eventCount: number,
   text: string,
@@ -266,7 +267,7 @@ export type EnterKeyHintTypeOptions =
 
 type PasswordRules = string;
 
-export type TextInputIOSProps = $ReadOnly<{
+export type TextInputIOSProps = Readonly<{
   /**
    * If true, the keyboard shortcuts (undo/redo and copy buttons) are disabled. The default value is false.
    * @platform ios
@@ -306,7 +307,7 @@ export type TextInputIOSProps = $ReadOnly<{
    */
   dataDetectorTypes?:
     | ?DataDetectorTypesType
-    | $ReadOnlyArray<DataDetectorTypesType>,
+    | ReadonlyArray<DataDetectorTypesType>,
 
   /**
    * If `true`, the keyboard disables the return key when there is no text and
@@ -403,7 +404,7 @@ export type TextInputIOSProps = $ReadOnly<{
   smartInsertDelete?: ?boolean,
 }>;
 
-export type TextInputAndroidProps = $ReadOnly<{
+export type TextInputAndroidProps = Readonly<{
   /**
    * When provided it will set the color of the cursor (or "caret") in the component.
    * Unlike the behavior of `selectionColor` the cursor color will be set independently
@@ -514,7 +515,7 @@ export type TextInputAndroidProps = $ReadOnly<{
 
 // [Windows
 
-type SubmitKeyEvent = $ReadOnly<{|
+type SubmitKeyEvent = Readonly<{|
   altKey?: ?boolean,
   ctrlKey?: ?boolean,
   metaKey?: ?boolean,
@@ -522,7 +523,7 @@ type SubmitKeyEvent = $ReadOnly<{|
   code: string,
 |}>;
 
-export type TextInputWindowsProps = $ReadOnly<{|
+export type TextInputWindowsProps = Readonly<{|
   /**
    * If `true`, clears the text field synchronously before `onSubmitEditing` is emitted.
    * @platform windows
@@ -538,7 +539,7 @@ export type TextInputWindowsProps = $ReadOnly<{|
 
 // Windows]
 
-type TextInputBaseProps = $ReadOnly<{
+type TextInputBaseProps = Readonly<{
   /**
    * When provided, the text input will only accept drag and drop events for the specified
    * types. If null or not provided, the text input will accept all types of drag and drop events.
@@ -557,7 +558,7 @@ type TextInputBaseProps = $ReadOnly<{
    *
    * @see https://developer.android.com/reference/android/content/ClipData for more information on MIME types
    */
-  experimental_acceptDragAndDropTypes?: ?$ReadOnlyArray<string>,
+  experimental_acceptDragAndDropTypes?: ?ReadonlyArray<string>,
   /**
    * String to be read by screenreaders to indicate an error state. The acceptable parameters
    * of accessibilityErrorMessage is a string. Setting accessibilityInvalid to true activates
@@ -979,7 +980,7 @@ type TextInputBaseProps = $ReadOnly<{
    * The start and end of the text input's selection. Set start and end to
    * the same value to position the cursor.
    */
-  selection?: ?$ReadOnly<{
+  selection?: ?Readonly<{
     start: number,
     end?: ?number,
   }>,
@@ -1064,7 +1065,7 @@ type TextInputBaseProps = $ReadOnly<{
   textAlign?: ?('left' | 'center' | 'right'),
 }>;
 
-export type TextInputProps = $ReadOnly<{
+export type TextInputProps = Readonly<{
   ...Omit<ViewProps, 'style'>,
   ...TextInputIOSProps,
   ...TextInputAndroidProps,
@@ -1201,8 +1202,8 @@ type InternalTextInput = component(
   ...TextInputProps
 );
 
-export type TextInputComponentStatics = $ReadOnly<{
-  State: $ReadOnly<{
+export type TextInputComponentStatics = Readonly<{
+  State: Readonly<{
     currentlyFocusedInput: () => ?HostInstance,
     currentlyFocusedField: () => ?number,
     focusTextInput: (textField: ?HostInstance) => void,

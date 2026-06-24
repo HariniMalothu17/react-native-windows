@@ -1,8 +1,43 @@
 # Change Log - @react-native-windows/cli
 
-<!-- This log was last generated on Tue, 07 Apr 2026 05:29:55 GMT and should not be manually modified. -->
+<!-- This log was last generated on Tue, 26 May 2026 20:10:44 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.0.0-canary.291
+
+Tue, 26 May 2026 20:10:44 GMT
+
+### Changes
+
+- Bump @xmldom/xmldom from 0.7.13 to 0.8.13 (AzureDevOps@users.noreply.github.com)
+- Bump @react-native-windows/telemetry to v0.0.0-canary.134
+
+## 0.0.0-canary.290
+
+Wed, 13 May 2026 18:22:07 GMT
+
+### Changes
+
+- Add a run-windows port option for Metro (vivekjm77@gmail.com)
+
+## 0.0.0-canary.289
+
+Sun, 10 May 2026 18:20:42 GMT
+
+### Changes
+
+- Upgrade to PowerShell 7 (julio.rocha@microsoft.com)
+- Bump @react-native-windows/find-dotnet-tools to v0.0.0-canary.2
+
+## 0.0.0-canary.288
+
+Tue, 21 Apr 2026 02:54:29 GMT
+
+### Changes
+
+- Add folly and fast-float to fork-sync (vmorozov@microsoft.com)
+- Fix command injection in cleanProject() (CWE-78) and argument injection in uninstallAppPackage() (CWE-88) (nitchaudhary@microsoft.com)
 
 ## 0.0.0-canary.287
 

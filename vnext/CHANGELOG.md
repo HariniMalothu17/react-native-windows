@@ -1,8 +1,108 @@
 # Change Log - react-native-windows
 
-<!-- This log was last generated on Tue, 07 Apr 2026 05:29:55 GMT and should not be manually modified. -->
+<!-- This log was last generated on Tue, 26 May 2026 20:10:43 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.0.0-canary.1056
+
+Tue, 26 May 2026 20:10:43 GMT
+
+### Changes
+
+- Template should import Microsoft.Cpp.Default.props before setting  ReactNativeWindowsDir (30809111+acoates-ms@users.noreply.github.com)
+- Race condition can cause the callinvoker to get a null runtime during shutdown.  Which should just skip the invoke. (30809111+acoates-ms@users.noreply.github.com)
+- Update template to have more consistent config between ship/debug (30809111+acoates-ms@users.noreply.github.com)
+- Defer findPowershell to layoutMSRNCxx (julio.rocha@microsoft.com)
+- Enable RCT_REMOVE_LEGACY_ARCH (30809111+acoates-ms@users.noreply.github.com)
+- Fix assert in x86 when using custom align (30809111+acoates-ms@users.noreply.github.com)
+- Remove JSBigStringResourceDll, and unify WebsocketResource (30809111+acoates-ms@users.noreply.github.com)
+- Bump @react-native-windows/cli to v0.0.0-canary.291
+
+## 0.0.0-canary.1055
+
+Wed, 13 May 2026 18:22:07 GMT
+
+### Changes
+
+- Show tooltip on keyboard focus, enforce single visible tooltip (74712637+iamAbhi-916@users.noreply.github.com)
+- Fix #16047: Pressables inside ScrollView remained stuck in the pressed state after a touch-driven scroll, and on non-100% Windows display scales the next tap on a row would not register `press`. Two underlying causes were addressed: (1) VisualInteractionSource::TryRedirectForManipulation does not deliver PointerCaptureLost for the redirected pointer, leaving a zombie entry in CompositionEventHandler::m_activeTouches — now resolved by synthesizing a touchcancel from the InputPointerSource.PointerRoutedAway event, which fires reliably on the redirect path; and (2) ScrollViewComponentView::updateStateWithContentOffset wrote the raw physical-pixel ScrollPosition into ScrollViewShadowNode state's contentOffset, which Fabric layout treats as DIPs, so JS UIManager.measure() over-subtracted the offset by pointScaleFactor after any scroll on a >100% display, causing Pressability to fire LEAVE_PRESS_RECT synchronously and suppress press — now divides by pointScaleFactor to match the JS event-emitter paths in the same file. (gordomacmaster@gmail.com)
+- Bump @react-native-windows/cli to v0.0.0-canary.290
+
+## 0.0.0-canary.1054
+
+Mon, 11 May 2026 14:34:27 GMT
+
+### Changes
+
+- Add hideTitleBar and hideBorder to Modal (30809111+acoates-ms@users.noreply.github.com)
+- fix: use IsPrimary() for touch pointer isPrimary instead of hardcoded pointer ID check (gordomacmaster@gmail.com)
+
+## 0.0.0-canary.1053
+
+Sun, 10 May 2026 18:20:42 GMT
+
+### Changes
+
+- Fix touch event handling, improve reliability, and optimize performance (gordomacmaster@gmail.com)
+- fix: cancel active touches in onPointerCaptureLost to prevent zombie touch state (gordomacmaster@gmail.com)
+- Upgrade to PowerShell 7 (julio.rocha@microsoft.com)
+- Image does not consistently rerender on image source change (30809111+acoates-ms@users.noreply.github.com)
+- fix: null dereference in get_SelectionContainer when no container found (66076509+vineethkuttan@users.noreply.github.com)
+- Use hermes-windows 0.0.0-2605.6002-2279da22 (vmorozov@microsoft.com)
+- Implement outline properties on view (30809111+acoates-ms@users.noreply.github.com)
+- fix: map Windows touch pointer IDs to small JS-safe identifiers in CompositionEventHandler (gordomacmaster@gmail.com)
+- Add ability to register modules as eager init (30809111+acoates-ms@users.noreply.github.com)
+- Some fixes for rounded borders (30809111+acoates-ms@users.noreply.github.com)
+- Minor text rendering perf improvement (30809111+acoates-ms@users.noreply.github.com)
+- Remove CORE_ABI and bring rnwin32 and MS.RN much closer in functionality (30809111+acoates-ms@users.noreply.github.com)
+- fix: cancel zombie touch state when ScrollView redirects pointer for manipulation, scope per-pointer events to the changed pointer, and remove always-true IsPointerWithinInitialTree fallback (gordomacmaster@gmail.com)
+- Bump @react-native-windows/cli to v0.0.0-canary.289
+- Bump @react-native-windows/find-dotnet-tools to v0.0.0-canary.2
+
+## 0.0.0-canary.1052
+
+Wed, 22 Apr 2026 16:40:25 GMT
+
+### Changes
+
+- Use hermes-windows version 0.0.0-2604.21001-94aa5e1d (vmorozov@microsoft.com)
+
+## 0.0.0-canary.1051
+
+Wed, 22 Apr 2026 02:49:04 GMT
+
+### Changes
+
+- Re-introduce Desktop integration tests (julio.rocha@microsoft.com)
+
+## 0.0.0-canary.1050
+
+Tue, 21 Apr 2026 02:54:29 GMT
+
+### Changes
+
+- Fix project compilation (vmorozov@microsoft.com)
+- Fix ScrollView keyboard scroll drift on long key press (74712637+iamAbhi-916@users.noreply.github.com)
+- Add folly and fast-float to fork-sync (vmorozov@microsoft.com)
+- Fix multiline TextInput crash from TxDrawD2D reentrancy (74712637+iamAbhi-916@users.noreply.github.com)
+- Bump @react-native-windows/cli to v0.0.0-canary.288
+
+## 0.0.0-canary.1049
+
+Wed, 08 Apr 2026 13:25:17 GMT
+
+### Changes
+
+- Upgrade to Boost 1.84 (julio.rocha@microsoft.com)
+
+## 0.0.0-canary.1048
+
+Tue, 07 Apr 2026 23:42:38 GMT
+
+### Changes
+
+- Fix unused function warning (30809111+acoates-ms@users.noreply.github.com)
 
 ## 0.0.0-canary.1047
 

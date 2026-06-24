@@ -130,6 +130,7 @@ void ImageComponentView::didReceiveImage(const std::shared_ptr<ImageResponseImag
 #endif
 
   m_imageResponseImage = imageResponseImage;
+  m_requiresImageRedraw = true;
   ensureDrawingSurface();
 }
 
@@ -188,14 +189,14 @@ void ImageComponentView::setStateAndResubscribeImageResponseObserver(
     facebook::react::ImageShadowNode::ConcreteState::Shared const &state) noexcept {
   if (m_state) {
     auto &observerCoordinator = m_state->getData().getImageRequest().getObserverCoordinator();
-    observerCoordinator.removeObserver(*m_imageResponseObserver);
+    observerCoordinator.removeObserver(m_imageResponseObserver);
   }
 
   m_state = state;
 
   if (m_state) {
     auto &observerCoordinator = m_state->getData().getImageRequest().getObserverCoordinator();
-    observerCoordinator.addObserver(*m_imageResponseObserver);
+    observerCoordinator.addObserver(m_imageResponseObserver);
   }
 }
 
@@ -234,6 +235,11 @@ void ImageComponentView::onThemeChanged() noexcept {
     ensureDrawingSurface();
   }
   Super::onThemeChanged();
+}
+
+winrt::Microsoft::ReactNative::Composition::Experimental::IVisual ImageComponentView::VisualToApplyBackgroundClipTo()
+    const noexcept {
+  return Visual();
 }
 
 void ImageComponentView::ensureDrawingSurface() noexcept {
@@ -310,6 +316,9 @@ void ImageComponentView::ensureDrawingSurface() noexcept {
   } else if (m_imageResponseImage->m_brushFactory) {
     Visual().as<Experimental::ISpriteVisual>().Brush(
         m_imageResponseImage->m_brushFactory(m_reactContext.Handle(), m_compContext));
+  } else if (m_requiresImageRedraw) {
+    m_requiresImageRedraw = false;
+    DrawImage();
   }
 }
 

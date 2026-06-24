@@ -1,7 +1,7 @@
 {
   "version": 1,
   "dependencies": {
-    "net6.0-windows10.0.22621": {
+    "net10.0-windows10.0.22621": {
       "Microsoft.Windows.CsWinRT": {
         "type": "Direct",
         "requested": "[2.2.0, )",
@@ -27,8 +27,8 @@
       },
       "boost": {
         "type": "Transitive",
-        "resolved": "1.83.0",
-        "contentHash": "cy53VNMzysEMvhBixDe8ujPk67Fcj3v6FPHQnH91NYJNLHpc6jxa2xq9ruCaaJjE4M3YrGSHDi4uUSTGBWw6EQ=="
+        "resolved": "1.84.0",
+        "contentHash": "4el2YP3cNJDVFPdzOso+LxGvdWP2rHxML4siq8VdonNypW2m4q503tHfCj6vK0L1UfxioE2hpFGb4ITEua73tg=="
       },
       "Microsoft.Build.Tasks.Git": {
         "type": "Transitive",
@@ -37,8 +37,8 @@
       },
       "Microsoft.JavaScript.Hermes": {
         "type": "Transitive",
-        "resolved": "0.0.0-2512.22001-bc3d0ed7",
-        "contentHash": "aMuCKrIwkCAnT56+oKqmxgfIaAHlKRVt8IiG/jtMbG01QH1mLPwL7wP89jRMsYSJzikW96trqgpUllZZa3O+Qw=="
+        "resolved": "0.0.0-2605.6002-2279da22",
+        "contentHash": "E59URq24UdJMpLMkMY92h3hs91EHelicbUsBRETn+FJ19uQbzU3gqkh2NPyBtMj4IVYK5K9FW+hIUTLg8SG25g=="
       },
       "Microsoft.SourceLink.Common": {
         "type": "Transitive",
@@ -118,7 +118,8 @@
         "contentHash": "cnPfVfMfOhbVobG417zJVbWLA0P5QZHqrMBEDndQNOcgpUEtKJNY2mC+n3+SLr14P1mKPpzPP9vm/O9APsq4bw==",
         "dependencies": {
           "Microsoft.WindowsAppSDK.Base": "2.0.0-experimental",
-          "Microsoft.WindowsAppSDK.Foundation": "2.0.8-experimental"
+          "Microsoft.WindowsAppSDK.Foundation": "2.0.8-experimental",
+          "System.Numerics.Tensors": "9.0.0"
         }
       },
       "Microsoft.WindowsAppSDK.Runtime": {
@@ -148,35 +149,32 @@
           "Microsoft.WindowsAppSDK.InteractiveExperiences": "2.0.3-experimental"
         }
       },
+      "System.Numerics.Tensors": {
+        "type": "Transitive",
+        "resolved": "9.0.0",
+        "contentHash": "hyJB4UlpAi19Xr9AXzu2NuagKC4lPfHObNMEAA0HmqFz2rX7wKgzeYzO/jM/eBHDhnUGFFEjk5cOoJaxqg5J4A=="
+      },
       "common": {
         "type": "Project",
         "dependencies": {
-          "boost": "[1.83.0, )"
-        }
-      },
-      "folly": {
-        "type": "Project",
-        "dependencies": {
-          "boost": "[1.83.0, )"
+          "boost": "[1.84.0, )"
         }
       },
       "microsoft.reactnative": {
         "type": "Project",
         "dependencies": {
           "Common": "[1.0.0, )",
-          "Folly": "[1.0.0, )",
-          "Microsoft.JavaScript.Hermes": "[0.0.0-2512.22001-bc3d0ed7, )",
+          "Microsoft.JavaScript.Hermes": "[0.0.0-2605.6002-2279da22, )",
           "Microsoft.SourceLink.GitHub": "[1.1.1, )",
           "Microsoft.WindowsAppSDK": "[2.0.0-experimental3, )",
           "ReactCommon": "[1.0.0, )",
-          "boost": "[1.83.0, )"
+          "boost": "[1.84.0, )"
         }
       },
       "reactcommon": {
         "type": "Project",
         "dependencies": {
-          "Folly": "[1.0.0, )",
-          "boost": "[1.83.0, )"
+          "boost": "[1.84.0, )"
         }
       }
     }

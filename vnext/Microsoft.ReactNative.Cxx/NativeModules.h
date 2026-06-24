@@ -47,6 +47,11 @@
 #define REACT_TURBO_MODULE(/* moduleStruct, [opt] moduleName */...) \
   INTERNAL_REACT_TURBO_MODULE(__VA_ARGS__)(__VA_ARGS__)
 
+// Same as REACT_TURBO_MODULE, but will register using AddEagerInitTurboModule, and this module
+// will be created and init'd on instance creation.
+#define REACT_EAGER_TURBO_MODULE(/* moduleStruct, [opt] moduleName */...) \
+  INTERNAL_REACT_EAGER_TURBO_MODULE(__VA_ARGS__)(__VA_ARGS__)
+
 // REACT_MODULE_NOREG is REACT_MODULE without auto registration
 // they have the same arguments
 #define REACT_MODULE_NOREG(/* moduleStruct, [opt] moduleName, [opt] eventEmitterName */...) \
@@ -522,7 +527,8 @@ struct ModuleJsiInitMethodInfo<void (TModule::*)(ReactContext const &, facebook:
     return
         [module = static_cast<ModuleType *>(module), method](
             ReactContext const &reactContext, winrt::Windows::Foundation::IInspectable const &runtimeHandle) noexcept {
-          (module->*method)(reactContext, GetOrCreateContextRuntime(reactContext, runtimeHandle));
+          if (runtimeHandle)
+            (module->*method)(reactContext, GetOrCreateContextRuntime(reactContext, runtimeHandle));
         };
   }
 };

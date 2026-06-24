@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Natvis Include="$(ReactNativeWindowsDir)Folly\Folly.natvis" />
+    <Natvis Include="$(ExternalDir)folly\Folly.natvis" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
@@ -86,9 +86,6 @@
     <ClCompile Include="Modules\Animated\ValueAnimatedNode.cpp">
       <Filter>Modules\Animated</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\AlertModule.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="Modules\AppearanceModule.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
@@ -105,9 +102,6 @@
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="Modules\I18nManagerModule.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="Modules\ImageViewManagerModule.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="Modules\LinkingManagerModule.cpp">
@@ -143,21 +137,11 @@
     <ClCompile Include="Utils\LocalBundleReader.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
-    <ClCompile Include="Utils\UwpPreparedScriptStore.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Utils\UwpScriptStore.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
     <ClCompile Include="Utils\ValueUtils.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\CreateModules.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="Views\FrameworkElementTransferProperties.cpp" />
     <ClCompile Include="Views\ReactViewInstance.cpp" />
-    <ClCompile Include="Utils\KeyboardUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base\CxxReactIncludes.h">
@@ -218,7 +202,6 @@
     <ClInclude Include="ReactHost\ReactNativeHeaders.h">
       <Filter>ReactHost</Filter>
     </ClInclude>
-    <ClInclude Include="ReactSupport.h" />
     <ClInclude Include="RedBox.h" />
     <ClInclude Include="TestHook.h" />
     <ClInclude Include="Modules\AccessibilityInfoModule.h">
@@ -377,12 +360,6 @@
     <ClInclude Include="Utils\StandardControlResourceKeyNames.h">
       <Filter>Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Utils\UwpPreparedScriptStore.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils\UwpScriptStore.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
     <ClInclude Include="Utils\ValueUtils.h">
       <Filter>Utils</Filter>
     </ClInclude>
@@ -453,8 +430,6 @@
   <ItemGroup>
     <Midl Include="ReactApplication.idl" />
     <Midl Include="XamlHelper.idl" />
-    <Midl Include="LayoutService.idl" />
-    <Midl Include="XamlUIService.idl" />
     <Midl Include="Views\cppwinrt\AccessibilityAction.idl">
       <Filter>Views\cppwinrt</Filter>
     </Midl>
